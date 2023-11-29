@@ -6,7 +6,11 @@
         <h2>Your Buddy in healthcare</h2>
     </head>
     <body>
-        <h2>This is a demo site</h2>
+        {% for post in posts%}
+            <h1>{{post.title}}</h1>
+            <p>By {{post.author}}</p>
+            <p>{{post.Content}}</p>
+        {%  endfor %}
         
     </body>
 </html>
