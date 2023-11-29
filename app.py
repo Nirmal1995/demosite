@@ -5,7 +5,6 @@ def get_data():
     return data 
 @app.route('/')
 def index():
-    data = get_data()
-    return render_template('index.html', data=data)
+    return render_template('index.html')
 if __name__ == '__main__':
     app.run(debug=True)
