@@ -97,4 +97,15 @@
         </div>
     </form>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <h3 style="color: red;"> {{ msg }} </h3>
+    {% endfor %}
+    {% endif %}
+    {% endwith%}
+
+</div>
+{% endblock %}
+
     
