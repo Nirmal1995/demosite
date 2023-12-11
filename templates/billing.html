@@ -187,4 +187,11 @@
             <th>Issued Date</th>
             <th>Cost</th>
         </tr>
+        {% for dia in dia %}
+        <tr class="myTd">
+            <td> {{ dia.tid }} </td>
+            <td> {{ dia.tname }} </td>
+            <td> {{ dia.date }} </td>
+            <td> {{ dia.tcharge }}.00 </td>
+        </tr>
 
