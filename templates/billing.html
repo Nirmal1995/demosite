@@ -170,4 +170,10 @@
             <td> {{ med.rate }}.00 </td>
             <td>€ {{ med.qissued * med.rate }}.00 </td>
         </tr>
+    </tr>
+    {% else %}
+    <h4>No Medicines issued </h4>
+    {% endfor %}
+</table>
+{% endif %}
 
