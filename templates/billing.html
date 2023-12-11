@@ -161,3 +161,13 @@
             <th>Cost</th>
             <th>Total</th>
         </tr>
+        {% for med in med %}
+        <tr class="myTd">
+            <td> {{ med.mid }} </td>
+            <td> {{ med.mname }} </td>
+            <td> {{ med.qissued }} </td>
+            <td> {{ med.date }} </td>
+            <td> {{ med.rate }}.00 </td>
+            <td>€ {{ med.qissued * med.rate }}.00 </td>
+        </tr>
+
