@@ -194,4 +194,11 @@
             <td> {{ dia.date }} </td>
             <td> {{ dia.tcharge }}.00 </td>
         </tr>
+        {% else %}
+        <h4>No Tests issued </h4>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</div>
 
