@@ -507,3 +507,18 @@ def editmedicinedetail(mid):
                 return redirect( url_for('medicinestatus') )
 
         return render_template('editmedicinedetail.html', editpat = editpat)
+    
+@app.route('/deletemedicinedetail/<mid>')
+def deletemedicinedetail(mid):
+    if 'username' in session:
+        delpat = MedicineMaster.query.filter_by(mid = mid).delete()
+        db.session.commit()
+
+        if delpat == None:
+            flash('Something went wrong')
+            return redirect( url_for('medicinestatus') )
+        else:
+            flash('Record deleted successfully')
+            return redirect( url_for('medicinestatus') )
+
+    return render_template('medicinestatus.html')
