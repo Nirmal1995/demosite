@@ -167,3 +167,11 @@ def create_patient():
         return redirect( url_for('login') )
 
     return render_template('create_patient.html')
+
+
+@app.route('/update_patient')
+def update_patient():
+    if 'username' in session:
+        usern = session['username']
+        print(usern)
+        updatep = Patients.query.all()
