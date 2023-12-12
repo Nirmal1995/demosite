@@ -297,3 +297,19 @@ def search_patient():
         return redirect( url_for('login') )
     
     return render_template('search_patient.html')
+
+@app.route('/billing', methods=['GET', 'POST'])
+def billing():
+    #today = datetime.today().strftime('%Y-%m-%d')
+    today = datetime.now()
+    if 'username' in session:
+        if request.method == 'POST':
+            id = request.form['id']
+            delta = 0
+            if id != "":
+                patient = Patients.query.filter_by( id = id).first()
+                if patient == None:
+                    flash('No Patients with this ID exists')
+                    return redirect( url_for('billing') )
+                elif patient.status != 'Active':
+                    flash('Record not found')
