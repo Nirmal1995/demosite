@@ -391,3 +391,35 @@ def addMedicine():
         return redirect( url_for('login') )
 
     return render_template('addMedicine.html')
+
+@app.route('/PharmacistPatientDetails', methods=['GET', 'POST'])
+def PharmacistPatientDetails():
+    if 'username' in session:
+        if request.method == 'POST':
+            id = request.form['id']
+            
+            if id != "":
+                patient = Patients.query.filter_by( id = id).first()
+                if patient == None:
+                    flash('Record not found')
+                    return redirect( url_for('PharmacistPatientDetails') )
+                else:
+                    flash('Record found')
+
+                med = Medicines.query.filter_by(pid = id).all()
+                print("Meddd", med)
+                if med == None:
+                    # nll = med.mid
+                    flash('No medication has been dispensed to the patient thus far')
+                    return render_template('PharmacistPatientDetails.html', patient = patient)
+                else:
+                    return render_template('PharmacistPatientDetails.html',patient = patient, med = med)
+            
+            if id == "":
+                flash('Enter ID to search')
+                return redirect( url_for('PharmacistPatientDetails') )
+    
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('PharmacistPatientDetails.html')
