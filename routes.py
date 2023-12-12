@@ -92,3 +92,14 @@ def login():
             flash('Login Failed', category="error")
 
     return render_template("login.html")
+
+
+@app.route('/registration', methods=['GET', 'POST'])
+def registration():
+    if request.method == 'POST':
+        uname = request.form['uname']
+        password = request.form['pass']
+        cnfrm_password = request.form['cpass']
+
+        query = Userstore.query.filter_by(uname = uname).first()
+        
