@@ -42,3 +42,50 @@
             <th></th>
 
         </tr>
+        {% for update in updatep %}
+        <tr>
+            <td> {{ update.id }} </td>
+            <td> {{ update.ssn_id }} </td>
+            <td> {{ update.pname }} </td>
+            <td> {{ update.age }} </td>
+            <td> {{ update.tbed }} </td>
+            <td> {{ update.address }}</td>
+            <td> {{ update.city }} </td>
+            <td> {{ update.state }} </td>
+            <td> {{ update.status }} </td>
+            <td> {{ update.date }} </td>
+            <td> {{ update.ldate }} </td>
+            <td> <button type="button" class="dbutton" onclick="window.location='deletepatientdetail/{{ update.id }}'">
+                    Delete Patient </button> </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+
+
+</div>
+
+{% endblock %}{% for update in updatep %}
+        <tr>
+            <td> {{ update.id }} </td>
+            <td> {{ update.ssn_id }} </td>
+            <td> {{ update.pname }} </td>
+            <td> {{ update.age }} </td>
+            <td> {{ update.tbed }} </td>
+            <td> {{ update.address }}</td>
+            <td> {{ update.city }} </td>
+            <td> {{ update.state }} </td>
+            <td> {{ update.status }} </td>
+            <td> {{ update.date }} </td>
+            <td> {{ update.ldate }} </td>
+            <td> <button type="button" class="dbutton" onclick="window.location='deletepatientdetail/{{ update.id }}'">
+                    Delete Patient </button> </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+
+
+</div>
+
+{% endblock %}
