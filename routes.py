@@ -522,3 +522,45 @@ def deletemedicinedetail(mid):
             return redirect( url_for('medicinestatus') )
 
     return render_template('medicinestatus.html')
+
+@app.route('/issuemedicine/<pid>', methods=['GET', 'POST'])
+def issuemedicine(pid):
+    if 'username' in session:
+        if request.method == 'POST':
+            mname = request.form['mname']
+            
+            if mname != "":
+                patient = MedicineMaster.query.filter_by( mname = mname).first()
+                if patient == None:
+                    flash('Record not found')
+                    return render_template('issuemedicine.html')
+                else:
+                    flash('Record found')
+                    qissued = request.form['qissued']
+                    qid = int(qissued)
+                    print( type(qid) )
+                    print((patient.qavailable) - qid)
+                    if(qid > patient.qavailable):
+                        flash("The requested quantity of the entered medicine is not currently in stock")
+                        return render_template('issuemedicine.html', patient = patient)
+                    else:
+                        patient.qavailable = patient.qavailable - qid
+                        db.session.commit()
+                        mid = patient.mid
+                        rate = patient.rate
+
+                        rowup = Medicines( mid = mid, pid=pid, mname = mname, rate = rate , qissued=qissued)
+                        db.session.add(rowup)
+                        db.session.commit()
+                        print("ROWWW", rowup)
+
+                        return render_template('issuemedicine.html', patient = patient)          
+            
+            if mname == "":
+                flash('Enter medicine name to Search')
+                return render_template('issuemedicine.html')
+    
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('issuemedicine.html')
