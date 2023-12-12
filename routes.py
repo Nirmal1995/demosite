@@ -564,3 +564,14 @@ def issuemedicine(pid):
         return redirect( url_for('login') )
     
     return render_template('issuemedicine.html')
+
+@app.route('/medicines')
+def medicines():
+    if 'username' in session:
+        updatep = Medicines.query.all()
+        return render_template('medicines.html', updatep = updatep)
+
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
+    return render_template('medicines.html')
