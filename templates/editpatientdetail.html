@@ -15,3 +15,15 @@
         left: 150px;
     } */
 </style>
+<div class="form1">
+    <h1 style="color: rgb(11, 29, 129); text-align: center;">Edit Patient </h1>
+    
+    {% for edit in editpat %}
+    <form action="" method="POST">
+        <label for="id">Patient ID:   </label> <b>{{ edit.id }}</b> <br><br>
+        <label for="ssn id">Patient SSN ID: </label> <b> {{ edit.ssn_id }} </b> <br><br>
+        
+        <label for="Name">Old Patient Name:   </label> <b>{{ edit.pname }}</b> <br><br>
+
+        <label for="New customer Name*">New Patient Name*</label>
+        <input type="text" class="text1" id="npname" name="npname" required><br><br>
