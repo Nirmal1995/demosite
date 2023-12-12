@@ -102,4 +102,13 @@ def registration():
         cnfrm_password = request.form['cpass']
 
         query = Userstore.query.filter_by(uname = uname).first()
+
+        if query !=None:
+            if uname == str(query.uname):
+                flash('User already exist')
+                return redirect( url_for('registration') )
+            
+        if password !=cnfrm_password:
+            flash('Passwords do not match')
+            return redirect( url_for('registration') )
         
