@@ -313,3 +313,54 @@ def billing():
                     return redirect( url_for('billing') )
                 elif patient.status != 'Active':
                     flash('Record not found')
+
+                else:
+                    flash('Record found')
+                    x = patient.date
+                    y = x.strftime("%d-%m-%Y, %H:%M:%S")
+                    # z = today.strftime("%d-%m-%Y")
+                    # print("Patient ",y)
+                    # print("today", z)
+                    delta = ( today - x ).days
+                    print(delta)
+                    dy = 0    
+                    if delta == 0:
+                        dy = 1
+                    else:
+                        dy = delta
+                    roomtype = patient.tbed
+                    bill = 0
+                    print(roomtype)
+                    if roomtype == 'SingleRoom':
+                        bill = 8000 * dy
+                    elif roomtype == 'SemiSharing':
+                        bill = 4000*dy
+                    else:
+                        bill = 2000*dy
+
+                    med = Medicines.query.filter_by(pid = id).all()
+                    if med == None:
+                        flash('No medication has been dispensed to the patient thus far')
+                    else:
+                        mtot = 0
+                        for j in med:
+                            mtot += (j.qissued * j.rate)
+
+                    dia = Diagnostics.query.filter_by(pid = id).all()
+                    if dia == None:
+                        flash('The patient has not been prescribed any tests so far')
+                    else:
+                        tot = 0
+                        for i in dia:
+                            tot += i.tcharge
+                        return render_template('billing.html', patient = patient, dy=dy, y=y, bill = bill, med = med, dia = dia, mtot = mtot, tot = tot)
+
+            
+            if id == "":
+                flash('Enter patient ID')
+                return redirect( url_for('billing') )
+    
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('billing.html')
