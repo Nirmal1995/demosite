@@ -373,3 +373,21 @@ def addMedicine():
             mname = request.form['mname']      
             qavailable = request.form['qavailable']
             rate = request.form['rate']
+
+            pat = MedicineMaster.query.filter_by( mid = mid ).first()
+
+            if pat == None:
+                med = MedicineMaster(mid=mid, mname=mname, qavailable=qavailable, rate=rate)
+                db.session.add(med)
+                db.session.commit()
+                flash('Record successfully added')
+                return redirect( url_for('addMedicine') )
+            
+            else:
+                flash('Record already exists')
+                return redirect( url_for('addMedicine') )
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
+
+    return render_template('addMedicine.html')
