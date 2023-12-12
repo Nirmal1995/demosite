@@ -111,6 +111,39 @@
         </table>
     </div>
 
+    {% else %}
+
+    <h3></h3>
+
+    {% endif %}
+
+    <br><br>
+    <p style="color: rgb(248, 11, 11);text-align: left;"> <strong>Medicines Issued</strong> </p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Issued</th>
+            <th>Issued Date</th>
+            <th>Cost</th>
+            <th>Total</th>
+        </tr>
+        {% for med in med %}
+        <tr class="myTd">
+            <td> {{ med.mid }} </td>
+            <td> {{ med.mname }} </td>
+            <td> {{ med.qissued }} </td>
+            <td> {{ med.date }} </td>
+            <td> {{ med.rate }} </td>
+            <td> {{ med.qissued * med.rate }}.00 </td>
+        </tr>
+        {% else %}
+        <h4>No Medicines issued </h4>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <br><br>
 
 
 
