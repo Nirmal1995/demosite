@@ -14,3 +14,18 @@
             {% endfor %}
         {% endif %}
     {% endwith%}
+    <table border="1">
+        <tr>
+            <th>PID</th>
+            <th>M ID</th>
+            <th>qiddued</th>
+            
+        </tr>
+        {% for update in updatep %}
+        <tr>
+            <td> {{ update.pid }} </td>
+            <td> {{ update.mid }} </td>
+            <td> {{ update.qissued }} </td>
+        {% endfor %}
+    </table>
+    <br>
