@@ -148,4 +148,22 @@ def create_patient():
             address = request.form['address']
             state = request.form['state']
             city = request.form['city']
-            status = request.form['status']    
+            status = request.form['status']
+
+            pat = Patients.query.filter_by( ssn_id = ssn_id ).first()
+
+            if pat == None:
+                patient = Patients(ssn_id=ssn_id, pname=pname, age=age, tbed=tbed, address=address, state=state, city=city,  status = status)
+                db.session.add(patient)
+                db.session.commit()
+                flash('Record created successfully')
+                return redirect( url_for('create_patient') )
+            
+            else:
+                flash('SSN ID already exists')
+                return redirect( url_for('create_patient') )
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
+
+    return render_template('create_patient.html')
