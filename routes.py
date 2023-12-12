@@ -256,4 +256,20 @@ def deletepatientdetail(id):
             return redirect( url_for('update_patient') )
 
     return render_template('update_patient.html')
-   
+
+
+@app.route('/patientscreen')
+def patientscreen():
+    if 'username' in session:
+        pts = Patients.query.filter_by( status = 'Active' )
+        print("ptsss",pts)
+        if not pts:
+            flash('All patients discharged')
+            return redirect( url_for('update_patient') )
+        else:
+            print("inside else")
+            return render_template('patientscreen.html', pts = pts)
+
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
