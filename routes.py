@@ -57,3 +57,13 @@ class Diagnostics(db.Model):
     tid = db.Column(db.Integer)
     tcharge = db.Column(db.Integer)
     date = db.Column(db.DateTime, default=datetime.now)
+
+    children = relationship("DiagnosticsMaster")
+
+class DiagnosticsMaster(db.Model):
+    __tablename__ = 'diagnosticsmaster'
+    tid = Column(Integer, ForeignKey('diagnostics.tid'), primary_key=True)
+    tname = Column(db.String(20))
+    tcharge = Column(db.Integer)
+
+db.create_all()
