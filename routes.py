@@ -48,3 +48,12 @@ class MedicineMaster(db.Model):
     mname = Column(db.String(20))
     qavailable = Column(db.Integer)
     rate = Column(db.Integer)
+
+class Diagnostics(db.Model):
+    __tablename__ = 'diagnostics'
+    id = db.Column(db.Integer, primary_key=True)
+    pid = db.Column(db.Integer)
+    tname = Column(db.String(20))
+    tid = db.Column(db.Integer)
+    tcharge = db.Column(db.Integer)
+    date = db.Column(db.DateTime, default=datetime.now)
