@@ -26,3 +26,18 @@ class Patients(db.Model):
     city = db.Column(db.String(20))
     state = db.Column(db.String(20))
     status = db.Column(db.String(20))
+
+    # children = relationship("Medicines")
+    # children1 = relationship("Diagnostics")
+
+class Medicines(db.Model):
+    __tablename__ = 'medicines'
+    id = db.Column(db.Integer, primary_key=True)
+    pid = db.Column(db.Integer)
+    mname = Column(db.String(20))
+    mid = db.Column(db.Integer)
+    rate = db.Column(db.Integer)
+    qissued = db.Column(db.Integer)
+    date = db.Column(db.DateTime, default=datetime.now)
+
+    children = relationship("MedicineMaster")
