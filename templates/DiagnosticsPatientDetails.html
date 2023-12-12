@@ -67,3 +67,13 @@
             </form>
         </div>
     </div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<p styles="colour: rgb(248, 11, 11);text-align: left;"> <strong>{{ msg }}</strong> </p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
