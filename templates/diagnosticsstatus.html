@@ -25,6 +25,29 @@
         <button type="submit" class="ibutton mybbttnn" value="Refresh the list">Refresh Status</button>
     </form>
 
-    <table>
+    <table border="1" align="center">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>COST</th>
+        </tr>
+        {% for update in update %}
+        <tr>
+            <td> {{ update.tid }} </td>
+            <td> {{ update.tname }} </td>
+            <td> {{ update.tcharge }} </td>
+        </tr>
+        {% else %}
+
+        <h3>No Tests Available</h3>
+        {% endfor %}
+    </table>
+    <br>
+
+
+</div>
+
+{% endblock %}
+
 
     
