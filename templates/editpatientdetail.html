@@ -35,3 +35,23 @@
 
         <label for="Old Age">Old Age:  </label> <b>{{ edit.age }}</b> <br><br>
 
+        <label for="New Age*">New Age*</label>
+        <input type="number" class="text1" id="nage" name="nage" min="0"  maxlength="2" required><br><br>
+
+        <label for="Old Address">Old Room:  </label><b> {{ edit.tbed }}</b> <br><br>
+
+        <label for="Bed">New Room*</label>
+                <select id="tbed" class="text1" name="tbed">
+                    <option value="General">General</option>
+                    <option value="Sharing">Sharing</option>
+                    <option value="ICU">ICU</option>
+                </select><br><br>
+
+                <label for="Old Address">Old State:  </label> <b> {{ edit.state }}</b> <br><br>       
+        <label for="state">Current State*</label>
+                <select id="nstate" class="text1" name="nstate">
+                    <option value="Cork">Cork</option>
+                    <option value="Dublin">Dublin</option>
+                    <option value="Limerick">Limerick</option>
+                </select><br><br>
+
