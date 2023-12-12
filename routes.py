@@ -41,3 +41,10 @@ class Medicines(db.Model):
     date = db.Column(db.DateTime, default=datetime.now)
 
     children = relationship("MedicineMaster")
+
+class MedicineMaster(db.Model):
+    __tablename__ = 'medicinemaster'
+    mid = Column(Integer, ForeignKey('medicine.mid'), primary_key=True)
+    mname = Column(db.String(20))
+    qavailable = Column(db.Integer)
+    rate = Column(db.Integer)
