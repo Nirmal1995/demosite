@@ -217,3 +217,28 @@ def editpatientdetail(id):
         print("inside sesssss")
         print(datetime.now())
         editpat = Patients.query.filter_by( id = id )
+
+
+        if request.method == 'POST':  
+            print("inside editpat post mtd")
+            pname = request.form['npname']      
+            age = request.form['nage']
+            tbed = request.form['tbed']
+            address = request.form['naddress']
+            status = request.form['status']
+            state = request.form['nstate']
+            city = request.form['ncity']
+            ldate = datetime.today()
+            row_update = Patients.query.filter_by( id = id ).update(dict(pname=pname, age=age, tbed=tbed, address=address, state=state, city=city, status = status, ldate=ldate))
+            db.session.commit()
+            print("Roww update", row_update)
+
+            if row_update == None:
+                flash('Something went wrong')
+                return redirect( url_for('update_patient') )
+            else:
+                flash('Patient updated successfully')
+                return redirect( url_for('update_patient') )
+
+        return render_template('editpatientdetail.html', editpat = editpat)
+    
