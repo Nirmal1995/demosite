@@ -364,3 +364,12 @@ def billing():
         return redirect( url_for('login') )
     
     return render_template('billing.html')
+
+@app.route('/addMedicine', methods=['GET', 'POST'] )
+def addMedicine():
+    if 'username' in session:                
+        if request.method == 'POST':           
+            mid = request.form['mid']
+            mname = request.form['mname']      
+            qavailable = request.form['qavailable']
+            rate = request.form['rate']
