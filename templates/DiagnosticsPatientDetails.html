@@ -54,3 +54,16 @@
          <form action="{{ url_for('PharmacistPatientDetails') }}">
             <button type="submit" class="rbutton" value="Refresh the list">Reset</button>
         </form> -->
+
+        <div class="flex-row">
+            <form action="" method="POST" class="flex-row">
+                <label for="id" style="font-weight: bold; font-size: larger; color: #164863;">Patient ID</label>
+                <input type="text" class="text" name="id" id="id">
+                <button class="button" type="submit">Search</button>
+            </form>
+            <form action="{{ url_for('PharmacistPatientDetails') }}">
+                <button type="submit" class="rbutton" value="Refresh the list">Reset</button>
+                <button type="submit" class="rbutton" value="Refresh the list">Reset</button>
+            </form>
+        </div>
+    </div>
