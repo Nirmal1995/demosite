@@ -23,3 +23,30 @@
     </form>
 
 </div>
+<table border="1" align="center">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>Available Qty</th>
+        <th>Cost</th>
+
+    </tr>
+    {% for update in updatep %}
+    <tr>
+        <td> {{ update.mid }} </td>
+        <td> {{ update.mname }} </td>
+        <td> {{ update.qavailable }} </td>
+        <td> {{ update.rate }} </td>
+    </tr>
+    {% else %}
+
+    <h3>No Medicines!</h3>
+    {% endfor %}
+</table>
+<br>
+
+
+
+</div>
+
+{% endblock %}
