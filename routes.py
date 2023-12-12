@@ -640,3 +640,22 @@ def addDiagnostics():
         return redirect( url_for('login') )
 
     return render_template('addDiagnostics.html')
+
+@app.route('/diagnosticsstatus')
+def diagnosticsstatus():
+    if 'username' in session:
+        usern = session['username']
+        print(usern)
+        updatep = DiagnosticsMaster.query.all()
+        print(updatep)
+        if not updatep:
+            flash('No tests available')
+            return redirect( url_for('addDiagnostics') )
+        else:
+            print("inside else")
+            return render_template('diagnosticsstatus.html', updatep = updatep)
+
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
+    return render_template('diagnosticsstatus.html')
