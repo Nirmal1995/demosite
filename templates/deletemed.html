@@ -22,3 +22,7 @@
     {% endfor %}
     {% endif %}
     {% endwith%}
+
+    <form action="{{ url_for('medicinestatus') }}">
+        <button type="submit" class="ibutton mybbttnn" value="Refresh the list">Refresh Status</button>
+    </form>
