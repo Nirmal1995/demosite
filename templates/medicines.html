@@ -29,3 +29,10 @@
         {% endfor %}
     </table>
     <br>
+    <form action="{{ url_for('update_patient') }}">
+        <button type="submit" value="Refresh the list">Refresh Status</button>
+        </form>
+    </div>
+    
+    {% endblock %}
+    
