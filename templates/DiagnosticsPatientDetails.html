@@ -68,12 +68,49 @@
         </div>
     </div>
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for msg in messages %}
-<p styles="colour: rgb(248, 11, 11);text-align: left;"> <strong>{{ msg }}</strong> </p>
-{% endfor %}
-{% endif %}
-{% endwith %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p styles="colour: rgb(248, 11, 11);text-align: left;"> <strong>{{ msg }}</strong> </p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div>
+        <table class="table">
+            {% if patient %}
+            <tr>
+                <th>ID</th>
+                <th>SSN</th>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>ROOM TYPE</th>
+                <th>ADDRESS</th>
+                <th>STATUS</th>
+                <th>ADMITTED ON</th>
+                <th></th>
+
+            </tr>
+
+
+            <tr>
+                <td> {{ patient.id }} </td>
+                <td> {{ patient.ss_id }} </td>
+                <td> {{ patient.pname }} </td>
+                <td> {{ patient.age }} </td>
+                <td> {{ patient.tbed }} </td>
+                <td> {{ patient.address}} </td>
+                <td> {{ patient.status}} </td>
+                <td> {{ patient.date}} </td>
+                {% if patient.status == 'Active' %}
+                <td> <button type="button" class="ibutton"
+                    onclick="window.location='issuediagnostics/{{ patient.id }}'"> Add Diagnostics </button> </td>
+                {% else %}
+                <td> Patient Discharge </td>
+            </tr>
+        </table>
+    </div>
+
+
 
 
