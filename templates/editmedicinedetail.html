@@ -35,3 +35,17 @@
         <input type="number" class="text1" id="rate" name="rate" min="1" required><br><br>
         <button  type="submit" class="ubutton">Update</button>
     </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p> {{ msg }} </p>
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
