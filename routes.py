@@ -208,3 +208,12 @@ def deletepat():
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') )
     return render_template('deletepat.html')
+
+
+@app.route('/editpatientdetail/<id>', methods=['GET', 'POST'])
+def editpatientdetail(id):
+    print("id is : ", id)
+    if 'username' in session:
+        print("inside sesssss")
+        print(datetime.now())
+        editpat = Patients.query.filter_by( id = id )
