@@ -67,3 +67,28 @@ class DiagnosticsMaster(db.Model):
     tcharge = Column(db.Integer)
 
 db.create_all()
+
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if 'username' in session:
+        return redirect( url_for('home') )
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        usr = Userstore.query.filter_by(uname = username).first()
+        if usr == None:
+            flash('User not found', category='error')
+            return redirect( url_for('login') )
+        
+        elif username == usr.uname and password == usr.password:
+            session['username'] = username
+            return redirect( url_for('home') )
+        
+        else:
+            flash('Login Failed', category="error")
+
+    return render_template("login.html")
