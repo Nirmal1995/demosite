@@ -461,3 +461,22 @@ def updatemed():
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') )
     return render_template('updatemed.html')
+
+@app.route('/deletemed')
+def deletemed():
+    if 'username' in session:
+        usern = session['username']
+        print(usern)
+        updatep = MedicineMaster.query.all()
+        print(updatep)
+        if not updatep:
+            flash('Record not found!')
+            return redirect( url_for('addMedicine') )
+        else:
+            print("inside else")
+            return render_template('deletemed.html', updatep = updatep)
+
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
+    return render_template('deletemed.html')
