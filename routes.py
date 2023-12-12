@@ -136,4 +136,16 @@ def home():
     else:
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') ) 
-           
+
+@app.route('/create_patient', methods=['GET', 'POST'])
+def create_patient():
+    if 'username' in session:                
+        if request.method == 'POST':           
+            ssn_id = request.form['ssn_id']
+            pname = request.form['pname']      
+            age = request.form['age']
+            tbed = request.form['tbed']
+            address = request.form['address']
+            state = request.form['state']
+            city = request.form['city']
+            status = request.form['status']    
