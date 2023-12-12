@@ -242,3 +242,18 @@ def editpatientdetail(id):
 
         return render_template('editpatientdetail.html', editpat = editpat)
     
+@app.route('/deletepatientdetail/<id>')
+def deletepatientdetail(id):
+    if 'username' in session:
+        delpat = Patients.query.filter_by(id = id).delete()
+        db.session.commit()
+
+        if delpat == None:
+            flash('Something went wrong')
+            return redirect( url_for('update_patient') )
+        else:
+            flash('Record deleted successfully')
+            return redirect( url_for('update_patient') )
+
+    return render_template('update_patient.html')
+   
