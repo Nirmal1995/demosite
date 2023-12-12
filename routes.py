@@ -659,3 +659,34 @@ def diagnosticsstatus():
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') )
     return render_template('diagnosticsstatus.html')
+
+@app.route('/issuediagnostics/<pid>', methods=['GET', 'POST'])
+def issuediagnostics(pid):
+    if 'username' in session:
+        if request.method == 'POST':
+            tname = request.form['tname']
+            
+            if tname != "":
+                patient = DiagnosticsMaster.query.filter_by( tname = tname).first()
+                if patient == None:
+                    flash('Record not found')
+                    return render_template('issuediagnostics.html')
+                else:
+                    flash('Record found')
+                    tid = patient.tid
+                    tcharge = patient.tcharge
+                    rowup = Diagnostics( tid = tid, pid=pid, tname = tname, tcharge = tcharge )
+                    db.session.add(rowup)
+                    db.session.commit()
+                    print("ROWWW", rowup)
+
+                    return render_template('issuediagnostics.html', patient = patient)
+      
+            if tname == "":
+                flash('Enter  Test Name to Search')
+                return render_template('issuediagnostics.html')
+    
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('issuediagnostics.html')
