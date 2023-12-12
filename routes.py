@@ -575,3 +575,42 @@ def medicines():
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') )
     return render_template('medicines.html')
+
+@app.route('/DiagnosticsPatientDetails', methods=['GET', 'POST'])
+def DiagnosticsPatientDetails():
+    if 'username' in session:
+        if request.method == 'POST':
+            id = request.form['id']
+            
+            if id != "":
+                patient = Patients.query.filter_by( id = id).first()
+                if patient == None:
+                    flash('Record not found')
+                    return redirect( url_for('DiagnosticsPatientDetails') )
+                else:
+                    flash('Record found')
+
+                med = Medicines.query.filter_by(pid = id).all()
+                print("Meddd", med)
+                if med == None:
+                    # nll = med.mid
+                    flash('No medication has been dispensed to the patient thus far')
+                    return render_template('DiagnosticsPatientDetails.html', patient = patient)
+                else:
+                    flash(" ")
+
+                dia = Diagnostics.query.filter_by(pid = id).all()
+                if dia == None:
+                    flash('The patient has not been prescribed any tests so far')
+                    return render_template('DiagnosticsPatientDetails.html', patient = patient)
+                else:
+                    return render_template('DiagnosticsPatientDetails.html',patient = patient, med = med, dia = dia)
+            
+            if id == "":
+                flash('Enter ID to search')
+                return redirect( url_for('DiagnosticsPatientDetails') )
+    
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('DiagnosticsPatientDetails.html')
