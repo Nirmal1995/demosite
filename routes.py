@@ -709,3 +709,9 @@ def generatebill(id):
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login'))
     return render_template('billing.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    flash('Logged out successfully')
+    return redirect( url_for('login') )
