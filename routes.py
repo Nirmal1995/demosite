@@ -480,3 +480,30 @@ def deletemed():
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') )
     return render_template('deletemed.html')
+
+@app.route('/editmedicinedetail/<mid>', methods=['GET', 'POST'] )
+def editmedicinedetail(mid):
+    print("id is : ", mid)
+    if 'username' in session:
+        print("inside sesssss")
+        print(datetime.now())
+        editpat = MedicineMaster.query.filter_by( mid = mid )
+        
+
+        if request.method == 'POST':  
+            print("inside editpat post mtd")
+            mname = request.form['mname']      
+            qavailable = request.form['qavailable']
+            rate = request.form['rate']
+            row_update = MedicineMaster.query.filter_by( mid = mid ).update(dict(mname=mname, qavailable=qavailable, rate=rate))
+            db.session.commit()
+            print("Roww update", row_update)
+
+            if row_update == None:
+                flash('Something went wrong')
+                return redirect( url_for('medicinestatus') )
+            else:
+                flash('Record updated successfully')
+                return redirect( url_for('medicinestatus') )
+
+        return render_template('editmedicinedetail.html', editpat = editpat)
