@@ -614,3 +614,29 @@ def DiagnosticsPatientDetails():
         return redirect( url_for('login') )
     
     return render_template('DiagnosticsPatientDetails.html')
+
+@app.route('/addDiagnostics', methods=['GET', 'POST'] )
+def addDiagnostics():
+    if 'username' in session:                
+        if request.method == 'POST':           
+            tid = request.form['tid']
+            tname = request.form['tname']      
+            tcharge = request.form['tcharge']
+
+            pat = DiagnosticsMaster.query.filter_by( tid = tid ).first()
+
+            if pat == None:
+                diag = DiagnosticsMaster(tid=tid, tname=tname, tcharge=tcharge)
+                db.session.add(diag)
+                db.session.commit()
+                flash('Record successfully added')
+                return redirect( url_for('addDiagnostics') )
+            
+            else:
+                flash('Record already exists')
+                return redirect( url_for('addDiagnostics') )
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') )
+
+    return render_template('addDiagnostics.html')
