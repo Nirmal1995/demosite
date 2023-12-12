@@ -112,3 +112,28 @@ def registration():
             flash('Passwords do not match')
             return redirect( url_for('registration') )
         
+        regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&][A-Za-z\d@$!#%*?&]{6.20}$"
+        pattern = re.compile(regex)
+
+        match = re.search(pattern, password)
+        
+        if match:
+            user = Userstore(uname = uname, password = password)
+            db.session.add(user)
+            db.session.commit()
+            flash('Successfully registered', category='info')
+            return redirect( url_for('login') )
+        else:
+            flash('The password must include an uppercase letter, a special character, and a numeric character')
+            return redirect( url_for('registration') )
+    return render_template('staff_registration.html')
+
+
+@app.route('/home')
+def home():
+    if 'username' in session:
+        return render_template('home.html')
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login') ) 
+           
