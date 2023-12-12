@@ -690,3 +690,22 @@ def issuediagnostics(pid):
         return redirect( url_for('login') )
     
     return render_template('issuediagnostics.html')
+
+@app.route('/generatebill/<id>')
+def generatebill(id):
+    if 'username' in session:
+        stat = 'Discharged'
+        row_update = Patients.query.filter_by( id = id ).update(dict(status = stat))
+        db.session.commit()
+
+        if row_update == None:
+            flash('Something went wrong')
+            return redirect( url_for('billing') )
+        else:
+            flash('Bill generated successfully')
+            return redirect( url_for('billing') )
+
+    else:
+        flash('Logged out! Please login again to continue')
+        return redirect( url_for('login'))
+    return render_template('billing.html')
