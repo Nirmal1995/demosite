@@ -273,3 +273,27 @@ def patientscreen():
     else:
         flash('Logged out! Please login again to continue')
         return redirect( url_for('login') )
+
+@app.route('/search_patient', methods=['GET', 'POST'])
+def search_patient():
+    if 'username' in session:
+        if request.method == 'POST':
+            id = request.form['id']
+            
+            if id != "":
+                patient = Patients.query.filter_by( id = id).first()
+                if patient == None:
+                    flash('No patients with this ID exists')
+                    return redirect( url_for('search_patient') )
+                else:
+                    flash('Record found')
+                    return render_template('search_patient.html', patient = patient)
+            
+            if id == "":
+                flash('Enter ID to search')
+                return redirect( url_for('search_patient') )
+    
+    else:
+        return redirect( url_for('login') )
+    
+    return render_template('search_patient.html')
