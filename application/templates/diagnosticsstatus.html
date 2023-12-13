@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %} Diagnostics Status {% endblock %}
+
+{% block content %}
+<style>
+    td {
+        padding: 5px;
+    }
+</style>
+
+<div class="stat">
+
+    <h1 style="color: #164863;">Diagnostics Status</h1><br>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p style="color: rgb(255, 5, 5);text-align: center; font-weight: bolder;"> {{ msg }} </p>
+    {% endfor %}
+    {% endif %}
+    {% endwith%}
+
+    <form action="{{ url_for('diagnosticsstatus') }}">
+        <button type="submit" class="ibutton mybbttnn" value="Refresh the list">Refresh Status</button>
+    </form>
+
+    <table border="1" align="center">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>COST</th>
+
+        </tr>
+        {% for update in updatep %}
+        <tr>
+            <td> {{ update.tid }} </td>
+            <td> {{ update.tname }} </td>
+            <td>€ {{ update.tcharge }} </td>
+        </tr>
+        {% else %}
+
+        <h3>No Tests Available!</h3>
+        {% endfor %}
+    </table>
+    <br>
+
+
+
+</div>
+
+{% endblock %}
