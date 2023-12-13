@@ -20,3 +20,19 @@ body {
     /* Direction of the items, can be row or column */
     flex-direction: column;
 }
+
+
+#logo {
+    color: rgb(7, 162, 252);
+    display: inline-flex;
+    position: absolute;
+    left: 131px;
+}
+
+.body1 {
+    background-image: url("../images/090716_stjoes.jpg");
+    background-repeat: no-repeat;
+    background-position: 0px 100px 0px 100px;
+    background-size: 100% ;
+    scroll-behavior: auto;
+}
