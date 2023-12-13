@@ -13,3 +13,59 @@
         align-items: center;
         gap: 10px;
     }
+    .button,
+    .rbutton {
+        padding: 8px 15px;
+        margin: 0;
+    }
+
+    .ibutton {
+        padding: 9px 20px !important;
+        margin: 3px;
+    }
+
+    .text {
+        padding: 8px;
+    }
+
+    .myTd>td {
+        padding: 5px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div>
+        <h1 style="color: #164863;"> Issue Medicines</h1>
+
+        <!-- <div class="someclass">
+            <div>
+                <form action="" method="POST">
+                    <label for="id" style="font-weight: bold; font-size: larger; color: #164863;">Patient ID</label>
+                    &nbsp;&nbsp;
+                    <input type="text" class="text" name="id" id="id"><br><br>
+                    <button class="button" type="submit">Search</button> <br><br>
+                </form>
+            </div>
+            <div>
+                <form action="{{ url_for('PharmacistPatientDetails') }}">
+                    <button type="submit" class="rbutton" value="Refresh the list">Reset</button>
+                </form>
+            </div>
+        </div> -->
+        <div class="someclass">
+            <div class="flex-row">
+                <form action="" method="POST" class="flex-row">
+                    <label for="id" style="font-weight: bold; font-size: larger; color: #164863;">Patient ID</label>
+                    <input type="text" class="text" name="id" id="id">
+                    <button class="button" type="submit">Search</button>
+                </form>
+                <form action="{{ url_for('PharmacistPatientDetails') }}">
+                    <button type="submit" class="rbutton" value="Refresh the list">Reset</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
