@@ -22,3 +22,11 @@
                     <button class="dropbtn">Medicine Management
                         <i class="fa fa-caret-down"></i>
                     </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('addMedicine') }}">Add Medicine</a>
+                        <a href="{{ url_for('medicinestatus') }}"> Medicine Status</a>
+                        <a href="{{ url_for('updatemed') }}">Update Medicine</a>
+                        <a href="{{ url_for('deletemed') }}">Delete Medicine</a>
+                        <a href="{{ url_for('PharmacistPatientDetails') }}">Issue Medicines</a>
+                    </div>
+                </div>
