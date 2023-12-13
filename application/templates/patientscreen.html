@@ -9,3 +9,14 @@
         margin: 3px;
     }
 </style>
+<div class="astatus">
+
+    <h1 style="color: #164863;">Active Patients</h1><br>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p style="color: rgb(255, 5, 5);text-align: center; font-weight: bolder;"> {{ msg }} </p>
+    {% endfor %}
+    {% endif %}
+    {% endwith%}
