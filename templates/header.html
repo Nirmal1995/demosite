@@ -35,3 +35,11 @@
                     <button class="dropbtn">Diagnostics Service
                         <i class="fa fa-caret-down"></i>
                     </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('DiagnosticsPatientDetails') }}">Issue Diagnostics</a>
+                        <a href="{{ url_for('diagnosticsstatus') }}">Diagnostics Status</a>
+                        <a href="{{ url_for('addDiagnostics') }}">Add Diagnostics </a>
+                        <a href="{{ url_for('DiagnosticsPatientDetails') }}">Update Test</a>
+                        <a href="{{ url_for('DiagnosticsPatientDetails') }}">Delete Test</a>
+                    </div>
+                </div>
