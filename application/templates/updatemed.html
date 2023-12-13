@@ -32,3 +32,13 @@
             <th></th>
 
         </tr>
+        {% for update in updatep %}
+        <tr>
+            <td> {{ update.mid }} </td>
+            <td> {{ update.mname }} </td>
+            <td> {{ update.qavailable }} </td>
+            <td> {{ update.rate }} </td>
+            <td> <button type="button" class="ubutton" onclick="window.location='editmedicinedetail/{{ update.mid }}'">
+                    Edit Medicine </button> </td>
+        </tr>
+        {% else %}
