@@ -40,3 +40,12 @@
         </form>
     </div>
 </div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<div>
+    <p style="color: rgb(248, 11, 11);text-align: center;"> <strong>{{ msg }}</strong> </p>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith%}
