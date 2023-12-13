@@ -29,3 +29,11 @@
     </form>
 
 </div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<p style="font-weight: bolder; font-size: larger; color: red; text-align: center;"> {{ msg }} </p>
+{% endfor %}
+{% endif %}
+{% endwith%}
