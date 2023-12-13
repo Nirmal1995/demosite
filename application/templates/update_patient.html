@@ -9,3 +9,34 @@
         margin: 3px;
     }
 </style>
+<div class="astatus">
+
+    <h1 style="color: #164863;"> Patients </h1><br>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p style="font-weight: bolder; color: red; font-size: larger;"> {{ msg }} </p>
+    {% endfor %}
+    {% endif %}
+    {% endwith%}
+    <form action="{{ url_for('update_patient') }}">
+        <button type="submit" class="ibutton mybbttnn" value="Refresh the list">Refresh Status</button>
+    </form>
+    <br>
+    <table>
+        <tr class="">
+            <th>ID</th>
+            <th>SSN ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>BEDTYPE</th>
+            <th>ADDRESS</th>
+            <th>CITY</th>
+            <th>STATE</th>
+            <th>STATUS</th>
+            <th>ADMIT DATE</th>
+            <th>LAST EDIT</th>
+            <th></th>
+
+        </tr>
