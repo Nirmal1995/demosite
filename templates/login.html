@@ -12,3 +12,13 @@
         </form>
         <strong style="color: #164863;">Click <a href="{{ url_for('registration') }}">here</a> to Register.</strong>
     </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        
+            <p class="messages"> {{ msg }} </p>
+       
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+</div>
