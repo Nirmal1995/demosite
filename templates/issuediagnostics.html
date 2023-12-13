@@ -37,3 +37,29 @@
 {% endfor %}
 {% endif %}
 {% endwith%}
+<div>
+    {% if patient %}
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>RATE</th>
+
+        </tr>
+
+        <tr>
+            <td> {{ patient.tid }} </td>
+            <td> {{ patient.tname }} </td>
+            <td> {{ patient.tcharge }} </td>
+        </tr>
+    </table>
+
+
+    {% else %}
+
+    <h3 style="color: red; text-align: center;">No Tests!</h3>
+    {% endif %}
+
+</div>
+
+{% endblock %}
