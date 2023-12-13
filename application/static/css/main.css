@@ -1,0 +1,22 @@
+header {
+    background-color: #427D9D;
+    height: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #DDF2FD;
+    height: 100%;
+    display: flex;
+    /* Direction of the items, can be row or column */
+    flex-direction: column;
+}
