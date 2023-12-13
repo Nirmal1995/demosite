@@ -41,3 +41,31 @@
 {% endfor %}
 {% endif %}
 {% endwith%}
+<div>
+    {% if patient %}
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Available Qty</th>
+            <th>RATE</th>
+
+        </tr>
+
+        <tr>
+            <td> {{ patient.mid }} </td>
+            <td> {{ patient.mname }} </td>
+            <td> {{ patient.qavailable }} </td>
+            <td> {{ patient.rate }} </td>
+        </tr>
+    </table>
+
+
+    {% else %}
+
+    <h3 style="color: red; text-align: center;">No Medicines!</h3>
+    {% endif %}
+
+</div>
+
+{% endblock %}
