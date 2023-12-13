@@ -9,3 +9,12 @@
                     <button class="dropbtn">Patient Management
                         <i class="fa fa-caret-down"></i>
                     </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('create_patient') }}">Register Patient</a>
+                        <a href="{{ url_for('update_patient') }}">Update Patient</a>
+                        <!-- <a href="{{ url_for('update_patient') }}">List Patients</a> -->
+                        <a href="{{ url_for('patientscreen') }}"> Active Patients</a>
+                        <a href="{{ url_for('search_patient') }}">Search Patients</a>
+                        <a href="{{ url_for('deletepat') }}">Delete Patient</a>
+                    </div>
+                </div>
