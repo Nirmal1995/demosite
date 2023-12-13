@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %} Patient Status {% endblock %}
+{% block title %} Account Status {% endblock %}
 
 {% block content %}
 <style>
@@ -11,36 +11,36 @@
 </style>
 <div class="astatus">
 
-    <h1 style="color: #164863;"> Patients </h1><br>
+    <h1 style="color: #164863;">Active Patients</h1><br>
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for msg in messages %}
-    <p style="font-weight: bolder; color: red; font-size: larger;"> {{ msg }} </p>
+    <p style="color: rgb(255, 5, 5);text-align: center; font-weight: bolder;"> {{ msg }} </p>
     {% endfor %}
     {% endif %}
     {% endwith%}
-    <form action="{{ url_for('update_patient') }}">
+    <form action="{{ url_for('patientscreen') }}">
         <button type="submit" class="ibutton mybbttnn" value="Refresh the list">Refresh Status</button>
     </form>
-    <br>
-    <table>
-        <tr class="">
+    <table border="1">
+
+        <tr>
             <th>ID</th>
             <th>SSN ID</th>
             <th>NAME</th>
             <th>AGE</th>
-            <th>BEDTYPE</th>
+            <th>ROOM TYPE</th>
             <th>ADDRESS</th>
             <th>CITY</th>
             <th>STATE</th>
             <th>STATUS</th>
-            <th>ADMIT DATE</th>
-            <th>LAST EDIT</th>
+            <th>ADMITTED ON</th>
+            <th>LAST UPDATE</th>
             <th></th>
 
         </tr>
-        {% for update in updatep %}
+        {% for update in pts %}
         <tr>
             <td> {{ update.id }} </td>
             <td> {{ update.ssn_id }} </td>
@@ -56,11 +56,4 @@
             <td> <button type="button" class="ubutton" onclick="window.location='editpatientdetail/{{ update.id }}'">
                     Edit Patient </button> </td>
         </tr>
-        {% endfor %}
-    </table>
-    <br>
-
-
-</div>
-
-{% endblock %}
+        {% else %}
