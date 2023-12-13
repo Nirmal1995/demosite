@@ -41,4 +41,12 @@
             <td> <button type="button" class="ubutton" onclick="window.location='editmedicinedetail/{{ update.mid }}'">
                     Edit Medicine </button> </td>
         </tr>
-        {% else %}
+        {% else %}        
+        <h3>No Medicines!</h3>
+        {% endfor %}
+    </table>
+    <br>
+
+</div>
+
+{% endblock %}
