@@ -1,0 +1,256 @@
+{% extends "layout.html" %}
+
+{% block title %} Bill Patient {% endblock %}
+
+{% block content %}
+
+<style>
+    /* input {
+        position: absolute;
+      
+    
+    
+   
+    } */
+    .text {
+        width: 250px;
+        padding: 10px 5px;
+        border: none;
+        border: solid 2px rgb(31, 21, 21) !important;
+        border-radius: 5px;
+    }
+    .myTd>td {
+        padding: 5px;
+    }
+
+    /* .genBill>table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .genBill>table tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    .genBill>table tr:nth-child(even) {
+        background-color: white;
+    } */
+    .genBill table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .genBill table tr:nth-child(odd) {
+        background-color: #f2f2f2;
+        /* Color for odd rows */
+    }
+    .genBill table tr:nth-child(even) {
+        background-color: white;
+        /* Color for even rows */
+    }
+    .genBill table th {
+        background-color: #c3e5ee;
+        color: #164863 !important;
+
+    }
+    .finalGenRow {
+        background-color: #164863 !important;
+        color: white !important;
+    }
+    .genbillContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .genbillContainer span {
+        width: 50rem;
+        margin-bottom: 2rem;
+    }
+    .genbillContainer h1 {
+        margin: 0px;
+        margin-top: 1rem;
+    }
+    .dbutton {
+        float: right;
+        padding: 9px 20px !important;
+        margin: 3px;
+
+    }
+
+</style>
+<div style="margin-top: 100px; text-align: center;">
+    <h1 style="color: #164863;"> Search Patient for Billing</h1>
+    <div style="margin-left: -10px;">
+        <div>
+            <form action="" method="POST"
+                style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <label for="id" style="font-weight: bold; font-size: large; color: #164863;">Patient ID</label>
+                <input class="text" type="text" name="id" id="id">
+                style="width: 250px; padding: 7px 5px; border: solid 2px rgb(31, 21, 21); border-radius: 5px;">
+                <button class="button" type="submit"
+                    style="padding: 8px 15px; border: none; border-radius: 4px; background-color: #4CAF50; color: white; cursor: pointer;">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}<br>
+<p style="color: rgb(255, 5, 5);text-align: center; font-weight: bolder;"> <strong>{{ msg }}</strong> </p>
+{% endfor %}
+{% endif %}
+{% endwith%}
+<br>
+
+<div>
+    {% if patient %}
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>SSN ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Room Type</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Admit Date</th>
+            <th>Days</th>
+            <th>Room Charges </th>
+
+        </tr>
+
+        <tr class="myTd">
+            <td> {{ patient.id }} </td>
+            <td> {{ patient.ssn_id }} </td>
+            <td> {{ patient.pname }} </td>
+            <td> {{ patient.age }} </td>
+            <td> {{ patient.tbed }} </td>
+            <td> {{ patient.address }}</td>
+            <td> {{ patient.status }} </td>
+            <td> {{ y }} </td>
+            <td> {{dy}} </td>
+            <td> {{ bill }} </td>
+        </tr>
+        
+        <tr>
+
+        </tr>
+
+    </table>
+
+
+</div>
+
+{% else %}
+
+<h3></h3>
+
+{% endif %}
+
+<div>
+    <br><br>
+    {% if med %}
+    <p style="color: rgb(248, 11, 11);text-align: left;"> <strong>Medicines Issued</strong> </p>
+    <table class="table" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Issued Date</th>
+            <th>Cost</th>
+            <th>Total</th>
+        </tr>
+        {% for med in med %}
+        <tr class="myTd">
+            <td> {{ med.mid }} </td>
+            <td> {{ med.mname }} </td>
+            <td> {{ med.qissued }} </td>
+            <td> {{ med.date }} </td>
+            <td> {{ med.rate }}.00 </td>
+            <td>€ {{ med.qissued * med.rate }}.00 </td>
+        </tr>
+    </tr>
+    {% else %}
+    <h4>No Medicines issued </h4>
+    {% endfor %}
+</table>
+{% endif %}
+
+<br><br>
+    {% if dia %}
+    <p style="color: rgb(248, 11, 11);text-align: left;"> <strong>Diagnostics Issued</strong> </p>
+    <table class="table" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Issued Date</th>
+            <th>Cost</th>
+        </tr>
+        {% for dia in dia %}
+        <tr class="myTd">
+            <td> {{ dia.tid }} </td>
+            <td> {{ dia.tname }} </td>
+            <td> {{ dia.date }} </td>
+            <td> {{ dia.tcharge }}.00 </td>
+        </tr>
+        {% else %}
+        <h4>No Tests issued </h4>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</div>
+
+<div class="genbillContainer">
+    <span>
+        {% if patient %}
+
+        <h1 style="text-align: center; color: rgb(247, 247, 247); background-color:#164863;">TOTAL BILL</h1>
+        <div class="genBill">
+
+            <table>
+                <tr>
+                    <th>Charges</th>
+                    <th>Total</th>
+
+                </tr>
+                <tr>
+                    <td>Room Charges</td>
+                    <td>€ {{ bill }} </td>
+
+                </tr>
+                <tr>
+                    <td>Medicine Charges</td>
+                    <td>€ {{ mtot }} </td>
+
+                </tr>
+                <tr>
+                    <td>Diagnostics Charges</td>
+                    <td>€ {{ tot }} </td>
+
+                </tr>
+                <tr class="finalGenRow">
+                    <td>Final Total</td>
+                    <td>€ {{ bill + mtot + tot }}.00 </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <button type="button" class="dbutton"
+                            onclick="window.location='generatebill/{{ patient.id }}'">Generate
+                            Bill </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        {% endif %}
+    </span>
+</div>
+
+
+
+{% endblock %}
+

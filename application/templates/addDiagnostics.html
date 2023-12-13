@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block title %} Add Diagnostics {% endblock %}
+
+{% block content %}
+<style>
+    /* input {
+                position: absolute;
+                left: 150px;
+            }
+            
+            select {
+                position: absolute;
+                left: 150px;
+            } */
+    .form-item {
+                display: flex;
+                flex-direction: column;
+                /* Stack elements vertically */
+                margin-bottom: 10px;
+                /* Space between each form item */
+            }
+     label {
+                margin-bottom: 5px;
+                /* Space between label and input */
+                font-weight: bold;
+                /* Optional: makes labels bold */
+                color: #164863;
+                /* Label color */
+            }
+            .text1 {
+                width: 100%;
+                /* Full width for input */
+                padding: 8px;
+                /* Padding inside input */
+                border: 1px solid #ccc;
+                /* Border for input */
+                border-radius: 4px;
+                /* Rounded corners for input */
+            }
+    .button,
+    .rbutton {
+        padding: 10px 20px;
+        margin-right: 10px;
+        /* Space between buttons */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .button {
+        background-color: #4CAF50;
+        /* Green */
+        color: white;
+    }
+
+    .rbutton {
+        background-color: #f44336;
+        /* Red */
+        color: white;
+    }
+    .flexbtn {
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+</style>
+<div class="form1">
+    <h1 style="text-align: center; color: #164863;">Add Diagnostics Test</h1>
+    <!-- <form action="" method="POST">
+        <label for="tid">Test id*</label>
+        <input type="number" class="text1" id="tid" name="tid" required><br><br>
+        <label for="pname">Test Name*</label>
+        <input type="text" class="text1" id="tname" name="tname" required><br><br>
+        <label for="age">Test Rate*</label>
+        <input type="number" class="text1" id="tcharge" name="tcharge" min="0" required><br><br>
+        <button class="button" type="submit">Add Test</button>
+        <button class="rbutton" type="reset">Reset</button>
+    </form> -->
+
+    <form action="" method="POST">
+        <div class="form-item">
+            <label for="tid">Test ID*</label>
+            <input type="number" class="text1" id="tid" name="tid" required>
+        </div>
+        <div class="form-item">
+            <label for="tname">Test Name*</label>
+            <input type="text" class="text1" id="tname" name="tname" required>
+        </div>
+        <div class="form-item">
+            <label for="tcharge">Test Rate*</label>
+            <input type="number" class="text1" id="tcharge" name="tcharge" min="0" required>
+        </div>
+        <div class="flexbtn">
+            <button class="button" type="submit">Add Test</button>
+            <button class="rbutton" type="reset">Reset</button>
+        </div>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <h3 style="color: red;"> {{ msg }} </h3>
+    {% endfor %}
+    {% endif %}
+    {% endwith%}
+
+</div>
+{% endblock %}
+
+    

@@ -1,0 +1,24 @@
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<div class="regwrapper"> 
+    <div class="loginheading"><p><b>Hospital Management System</b></p></div>
+    <div class="form">
+        <form action="" method="post">
+                <label for="uname" style="font-weight: bold; color: #164863;"> Username </label><br>
+                <input class="text" type="text" name="username" required minlength="5" class="logindecor" placeholder="Enter Username"><br>
+                <label for="pass" style="font-weight: bold; color: #164863;"> Password </label> <br>
+                <input class="text" type="password" name="password" required minlength="6" class="logindecor" placeholder="Enter Password">            
+           <br> <input class="bt" type="submit" value="Login">            
+        </form>
+        <strong style="color: #164863;">Click <a href="{{ url_for('registration') }}">here</a> to Register.</strong>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+        
+            <p class="messages"> {{ msg }} </p>
+       
+        {% endfor %}
+    {% endif %}
+{% endwith%}
+</div>
