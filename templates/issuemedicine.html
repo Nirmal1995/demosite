@@ -15,3 +15,21 @@
         left: 150px;
     } */
 </style>
+<div class="form1">
+    <h1 style="color: #164863; "> Search Medicine </h1>
+
+
+    <form action="" method="POST" style="width: 250px; padding: 7px 5px; display: flex; flex-direction: column;">
+        <label for="customer_id"
+            style="font-weight: bold; font-size: large; color: #164863; padding-bottom: 2px;">Medicine Name</label>
+        <input type="text" class="text1" name="mname" id="mname" required
+            style="width: 250px; padding: 7px 5px; border: solid 2px rgb(31, 21, 21); border-radius: 5px;"><br><br>
+
+        <label for="qissued" style="font-weight: bold; font-size: large; color: #164863;">Quantity Required*</label>
+        <input type="number" class="text1" id="qissued" name="qissued" min="0" required
+            style="width: 250px; padding: 7px 5px; border: solid 2px rgb(31, 21, 21); border-radius: 5px;"><br><br>
+
+        <button class="ibutton" type="submit">Issue</button>
+    </form>
+
+</div>
