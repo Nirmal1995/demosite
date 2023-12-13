@@ -1,0 +1,59 @@
+<header>
+    <div class="links">
+        <nav class="navbar">
+            <div class="headerLinks">
+                <a href="{{ url_for('update_patient') }}" class="logoHover">
+                    <span class="logo"><i class="fa-solid fa-briefcase-medical"></i> MediCare</span>
+                </a>
+                <div class="dropdown">
+                    <button class="dropbtn">Patient Management
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('create_patient') }}">Register Patient</a>
+                        <a href="{{ url_for('update_patient') }}">Update Patient</a>
+                        <!-- <a href="{{ url_for('update_patient') }}">List Patients</a> -->
+                        <a href="{{ url_for('patientscreen') }}"> Active Patients</a>
+                        <a href="{{ url_for('search_patient') }}">Search Patients</a>
+                        <a href="{{ url_for('deletepat') }}">Delete Patient</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Medicine Management
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('addMedicine') }}">Add Medicine</a>
+                        <a href="{{ url_for('medicinestatus') }}"> Medicine Status</a>
+                        <a href="{{ url_for('updatemed') }}">Update Medicine</a>
+                        <a href="{{ url_for('deletemed') }}">Delete Medicine</a>
+                        <a href="{{ url_for('PharmacistPatientDetails') }}">Issue Medicines</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Diagnostics Service
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('DiagnosticsPatientDetails') }}">Issue Diagnostics</a>
+                        <a href="{{ url_for('diagnosticsstatus') }}">Diagnostics Status</a>
+                        <a href="{{ url_for('addDiagnostics') }}">Add Diagnostics </a>
+                        <a href="{{ url_for('DiagnosticsPatientDetails') }}">Update Test</a>
+                        <a href="{{ url_for('DiagnosticsPatientDetails') }}">Delete Test</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Billing
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('billing') }}">Patient Billing</a>
+                    </div>
+                </div>
+                <span><a href="{{ url_for('logout') }}"><span class="logout">Logout</span></a></span>
+            </div>
+        </nav>
+    </div>
+</header>
